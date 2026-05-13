@@ -6,8 +6,12 @@ const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const validator = require('validator');
 const path = require('path');
+const compression = require('compression');
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Apply compression middleware to compress responses
+app.use(compression());
 
 app.use(helmet({
     contentSecurityPolicy: {
@@ -16,8 +20,12 @@ app.use(helmet({
             scriptSrc: ["'self'", "'unsafe-inline'"],
             styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdnjs.cloudflare.com"],
             fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdnjs.cloudflare.com"],
-            imgSrc: ["'self'", "data:", "https://images.unsplash.com", "https://*"],
+            // Allow images from Unsplash and Google Maps
+            imgSrc: ["'self'", "data:", "https://images.unsplash.com", "https://maps.gstatic.com", "https://maps.googleapis.com"],
+            // Allow the backend to talk to itself
             connectSrc: ["'self'"],
+            // ALLOW YOUTUBE AND MAPS IFRAMES HERE:
+            frameSrc: ["'self'", "https://www.youtube.com", "https://www.google.com", "https://maps.google.com"],
         },
     },
 })); // Sets security HTTP headers
@@ -52,6 +60,24 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Create the transporter once for better efficiency
+const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, // Use SSL
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    },
+    // FORCE IPV4 TO PREVENT ENETUNREACH ERROR
+    connectionTimeout: 10000, // 10 seconds
+    socketTimeout: 10000,     // 10 seconds
+    tls: {
+        // This ensures the connection uses IPv4
+        family: 4 
+    }
+});
+
 // Example route for sending email
 app.post('/send-email', emailLimiter, async (req, res) => {
     let { name, email, message } = req.body;
@@ -67,14 +93,6 @@ app.post('/send-email', emailLimiter, async (req, res) => {
     // Input Sanitization (prevent Cross-Site Scripting - XSS)
     name = validator.escape(name.trim());
     message = validator.escape(message.trim());
-
-    const transporter = nodemailer.createTransport({
-        service: 'gmail', // or your preferred service
-        auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS
-        }
-    });
 
     const mailOptions = {
         from: email,

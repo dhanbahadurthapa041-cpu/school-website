@@ -7,12 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Language Toggle Logic
     const langToggle = document.getElementById('langToggle');
+    const translatableElements = document.querySelectorAll('[data-en][data-np]');
+    
     if (langToggle) {
         langToggle.addEventListener('click', () => {
             currentLang = currentLang === 'en' ? 'np' : 'en';
             langToggle.textContent = currentLang === 'en' ? 'नेपाली' : 'English';
             
-            const translatableElements = document.querySelectorAll('[data-en][data-np]');
             translatableElements.forEach(el => {
                 el.textContent = el.getAttribute(`data-${currentLang}`);
             });
