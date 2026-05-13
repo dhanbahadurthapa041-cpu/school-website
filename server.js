@@ -72,18 +72,19 @@ app.post('/send-email', emailLimiter, async (req, res) => {
     message = validator.escape(message.trim());
 
     // ==========================================
-    // FIX 2: Force IPv4 for Nodemailer
-    // This stops the ENETUNREACH error!
+    // FIX 3: Use Port 587 (STARTTLS)
+    // Bypasses cloud network blocks on port 465
     // ==========================================
     const transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
-        port: 465,
-        secure: true, 
+        port: 587,
+        secure: false, // Must be false for port 587
+        requireTLS: true, // Forces the connection to be secure
         auth: {
             user: process.env.EMAIL_USER,
             pass: process.env.EMAIL_PASS
         },
-        // Placing family: 4 here forces the very first network connection to use IPv4
+        // Keep IPv4 forced just in case
         family: 4 
     });
 
