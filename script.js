@@ -8,12 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Language Toggle Logic
     const langToggle = document.getElementById('langToggle');
     const translatableElements = document.querySelectorAll('[data-en][data-np]');
-    
+
     if (langToggle) {
         langToggle.addEventListener('click', () => {
             currentLang = currentLang === 'en' ? 'np' : 'en';
             langToggle.textContent = currentLang === 'en' ? 'नेपाली' : 'English';
-            
+
             translatableElements.forEach(el => {
                 el.textContent = el.getAttribute(`data-${currentLang}`);
             });
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contactForm) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             // Disable button and show loading text
             submitBtn.disabled = true;
             submitBtn.textContent = currentLang === 'en' ? 'Sending...' : 'पठाउँदै...';
@@ -44,8 +44,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     from_email: formData.email,
                     message: formData.message
                 };
-                
-                await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams);
+
+                await emailjs.send('service_s8k01w8', 'template_igust48', templateParams);
 
                 // Success message
                 formResponse.textContent = currentLang === 'en' ? 'Message sent successfully!' : 'सन्देश सफलतापूर्वक पठाइयो!';
