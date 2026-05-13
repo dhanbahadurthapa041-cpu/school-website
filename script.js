@@ -38,31 +38,23 @@ document.addEventListener('DOMContentLoaded', () => {
             };
 
             try {
-                // Send POST request to the backend
-                const response = await fetch('/send-email', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(formData)
-                });
+                // NOTE: Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with actual EmailJS IDs!
+                const templateParams = {
+                    from_name: formData.name,
+                    from_email: formData.email,
+                    message: formData.message
+                };
+                
+                await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams);
 
-                const result = await response.json();
-
-                if (response.ok) {
-                    // Success message
-                    formResponse.textContent = currentLang === 'en' ? 'Message sent successfully!' : 'सन्देश सफलतापूर्वक पठाइयो!';
-                    formResponse.style.color = 'green';
-                    contactForm.reset();
-                } else {
-                    // Error from server
-                    formResponse.textContent = result.message || (currentLang === 'en' ? 'Failed to send message.' : 'सन्देश पठाउन असफल भयो।');
-                    formResponse.style.color = 'red';
-                }
+                // Success message
+                formResponse.textContent = currentLang === 'en' ? 'Message sent successfully!' : 'सन्देश सफलतापूर्वक पठाइयो!';
+                formResponse.style.color = 'green';
+                contactForm.reset();
             } catch (error) {
-                // Network error
+                // Error from EmailJS or network
                 console.error('Error sending message:', error);
-                formResponse.textContent = currentLang === 'en' ? 'An error occurred. Please try again.' : 'त्रुटि भयो। कृपया फेरि प्रयास गर्नुहोस्।';
+                formResponse.textContent = currentLang === 'en' ? 'Failed to send message. Please try again.' : 'सन्देश पठाउन असफल भयो। कृपया फेरि प्रयास गर्नुहोस्।';
                 formResponse.style.color = 'red';
             } finally {
                 // Re-enable the button

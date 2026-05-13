@@ -189,6 +189,14 @@
         </div>
     </footer>
 
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // NOTE: Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS public key!
+            emailjs.init("YOUR_PUBLIC_KEY");
+        })();
+    </script>
     <script src="script.js"></script>
 </body>
 
