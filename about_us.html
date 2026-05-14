@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Shree Bhawani Secondary School</title>
+    <meta name="description"
+        content="Learn about Shree Bhawani Secondary School — our history, mission, vision, leadership team, and the values that drive our commitment to quality education in Bardiya, Nepal.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ── Page-specific styles ── */
+        .page-hero {
+            position: relative;
+            background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--text-light);
+            padding: 6rem 0;
+            text-align: center;
+        }
+        .page-hero .hero-overlay {
+            background-color: var(--dark-teal);
+            opacity: 0.88;
+        }
+        .page-hero .hero-content {
+            max-width: 700px;
+        }
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .page-hero p {
+            font-size: 1.15rem;
+            opacity: 0.9;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background-color: var(--dark-teal);
+            padding: 0.6rem 0;
+        }
+        .breadcrumb a, .breadcrumb span {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+        .breadcrumb a:hover { color: var(--accent-coral); }
+        .breadcrumb .sep { margin: 0 0.5rem; }
+        .breadcrumb .current { color: var(--text-light); font-weight: 600; }
+
+        /* Section spacing */
+        .content-section { padding: 5rem 0; }
+        .content-section.alt-bg { background-color: #f0f7f7; }
+
+        /* Mission / Vision cards */
+        .mv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+        .mv-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+            border-top: 4px solid var(--primary-teal);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .mv-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); }
+        .mv-card .mv-icon {
+            font-size: 2.5rem;
+            color: var(--primary-teal);
+            margin-bottom: 1rem;
+        }
+        .mv-card h3 { color: var(--dark-teal); margin-bottom: 0.75rem; font-size: 1.3rem; }
+        .mv-card p { color: var(--text-gray); line-height: 1.7; }
+
+        /* History / Story */
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .story-img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+            object-fit: cover;
+            min-height: 360px;
+            background-color: #cde8e8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-teal);
+            font-size: 1rem;
+        }
+        .story-text h2 { color: var(--dark-teal); }
+        .story-text p { color: var(--text-gray); line-height: 1.8; margin-bottom: 1rem; }
+        .story-text .highlight {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background-color: #f0f7f7;
+            border-left: 4px solid var(--primary-teal);
+            padding: 0.9rem 1.2rem;
+            border-radius: 0 6px 6px 0;
+            margin-bottom: 0.75rem;
+            color: var(--dark-teal);
+            font-weight: 600;
+        }
+        .story-text .highlight i { color: var(--primary-teal); }
+
+        /* Stats bar */
+        .stats-bar {
+            background: linear-gradient(135deg, var(--dark-teal), var(--primary-teal));
+            padding: 3.5rem 0;
+            color: var(--text-light);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        .stat-item .stat-number { font-size: 2.8rem; font-weight: 700; color: var(--accent-coral); }
+        .stat-item .stat-label { font-size: 0.95rem; opacity: 0.85; margin-top: 0.25rem; }
+
+        /* Core values */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        .value-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: transform 0.3s;
+        }
+        .value-card:hover { transform: translateY(-4px); }
+        .value-card i { font-size: 2rem; color: var(--accent-coral); margin-bottom: 0.75rem; }
+        .value-card h4 { color: var(--dark-teal); margin-bottom: 0.4rem; }
+        .value-card p { font-size: 0.9rem; color: var(--text-gray); }
+
+        /* Leadership team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+        .team-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+            transition: transform 0.3s;
+        }
+        .team-card:hover { transform: translateY(-4px); }
+        .team-avatar {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background-color: #cde8e8;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: var(--primary-teal);
+        }
+        .team-card h4 { color: var(--dark-teal); margin-bottom: 0.2rem; }
+        .team-card .role { font-size: 0.9rem; color: var(--accent-coral); font-weight: 600; }
+        .team-card p { font-size: 0.88rem; color: var(--text-gray); margin-top: 0.6rem; line-height: 1.5; }
+
+        /* Accreditation / Recognition */
+        .recognition-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+        .recognition-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .recognition-card i { font-size: 1.8rem; color: var(--primary-teal); flex-shrink: 0; margin-top: 2px; }
+        .recognition-card h4 { color: var(--dark-teal); margin-bottom: 0.3rem; }
+        .recognition-card p { font-size: 0.9rem; color: var(--text-gray); }
+
+        /* CTA banner */
+        .cta-band {
+            background: linear-gradient(135deg, var(--accent-coral), #e8603a);
+            padding: 4rem 0;
+            text-align: center;
+            color: var(--text-light);
+        }
+        .cta-band h2 { margin-bottom: 0.75rem; }
+        .cta-band p { opacity: 0.9; margin-bottom: 2rem; max-width: 550px; margin-left: auto; margin-right: auto; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .story-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .page-hero h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ── Header (identical to index.html) ── -->
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>Shree Bhawani Secondary School</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#academics">Academics</a></li>
+                    <li><a href="index.html#facilities">Facilities</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-action" style="display:flex; gap: 1rem; align-items:center;">
+                <button id="langToggle" class="btn btn-outline"
+                    style="padding: 0.5rem 1rem; font-size: 0.9rem;">नेपाली</button>
+                <a href="index.html#admissions" class="btn btn-accent">Admissions 2083</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ── Breadcrumb ── -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="index.html">Home</a>
+            <span class="sep">/</span>
+            <span class="current">About Us</span>
+        </div>
+    </div>
+
+    <!-- ── 1. Page Hero ── -->
+    <section class="page-hero">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <h1 data-en="About Our School" data-np="हाम्रो विद्यालयको बारेमा">About Our School</h1>
+            <p data-en="Nurturing young minds in Bardiya since [Year Founded]. Committed to academic excellence and holistic development."
+               data-np="[स्थापना वर्ष] देखि बर्दियामा युवा मस्तिष्कलाई पोषण गर्दै। शैक्षिक उत्कृष्टता र समग्र विकासप्रति प्रतिबद्ध।">
+                Nurturing young minds in Bardiya since [Year Founded]. Committed to academic excellence and holistic
+                development.
+            </p>
+        </div>
+    </section>
+
+    <!-- ── 2. Mission, Vision & Objectives ── -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title" style="text-align:center;"
+                data-en="Mission, Vision &amp; Objectives"
+                data-np="लक्ष्य, दृष्टिकोण र उद्देश्यहरू">Mission, Vision &amp; Objectives</h2>
+            <div class="mv-grid">
+                <div class="mv-card">
+                    <div class="mv-icon"><i class="fa-solid fa-bullseye"></i></div>
+                    <h3 data-en="Our Mission" data-np="हाम्रो लक्ष्य">Our Mission</h3>
+                    <p data-en="[Mission statement placeholder — describe the school's core purpose and daily commitment to students.]"
+                       data-np="[लक्ष्य विवरण यहाँ राख्नुहोस्।]">
+                        [Mission statement placeholder — describe the school's core purpose and daily commitment to students.]
+                    </p>
+                </div>
+                <div class="mv-card">
+                    <div class="mv-icon"><i class="fa-solid fa-eye"></i></div>
+                    <h3 data-en="Our Vision" data-np="हाम्रो दृष्टिकोण">Our Vision</h3>
+                    <p data-en="[Vision statement placeholder — where the school aims to be in the next 10–20 years.]"
+                       data-np="[दृष्टिकोण विवरण यहाँ राख्नुहोस्।]">
+                        [Vision statement placeholder — where the school aims to be in the next 10–20 years.]
+                    </p>
+                </div>
+                <div class="mv-card">
+                    <div class="mv-icon"><i class="fa-solid fa-list-check"></i></div>
+                    <h3 data-en="Our Objectives" data-np="हाम्रा उद्देश्यहरू">Our Objectives</h3>
+                    <p data-en="[Key objectives placeholder — measurable goals, e.g., literacy rates, exam pass rates, community outreach.]"
+                       data-np="[उद्देश्य विवरण यहाँ राख्नुहोस्।]">
+                        [Key objectives placeholder — measurable goals, e.g., literacy rates, exam pass rates, community outreach.]
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── 3. Our Story / History ── -->
+    <section class="content-section alt-bg">
+        <div class="container">
+            <div class="story-grid">
+                <!-- Image placeholder -->
+                <div class="story-img" style="height:380px; background:#cde8e8; display:flex; align-items:center; justify-content:center; border-radius:10px;">
+                    <span style="color:var(--primary-teal); font-size:1rem;">[School photo placeholder]</span>
+                </div>
+                <div class="story-text">
+                    <h2 data-en="Our Story" data-np="हाम्रो इतिहास">Our Story</h2>
+                    <p data-en="[Founding paragraph — describe when and why the school was established, who founded it, and the community need it addressed.]"
+                       data-np="[स्थापना विवरण यहाँ राख्नुहोस्।]">
+                        [Founding paragraph — describe when and why the school was established, who founded it, and the community need it addressed.]
+                    </p>
+                    <p data-en="[Growth paragraph — describe key milestones such as new buildings, grade expansions, accreditations received.]"
+                       data-np="[विकास विवरण यहाँ राख्नुहोस्।]">
+                        [Growth paragraph — describe key milestones such as new buildings, grade expansions, accreditations received.]
+                    </p>
+                    <div class="highlight"><i class="fa-solid fa-calendar-days"></i> Established: [Year]</div>
+                    <div class="highlight"><i class="fa-solid fa-location-dot"></i> Badhaiyatal-3, Semara, Bardiya</div>
+                    <div class="highlight"><i class="fa-solid fa-graduation-cap"></i> ECED to Class 9</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── 4. Key Statistics ── -->
+    <div class="stats-bar">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">XX+</div>
+                    <div class="stat-label" data-en="Years of Service" data-np="सेवाका वर्षहरू">Years of Service</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">XXX+</div>
+                    <div class="stat-label" data-en="Students Enrolled" data-np="भर्ना भएका विद्यार्थीहरू">Students Enrolled</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">XX+</div>
+                    <div class="stat-label" data-en="Qualified Teachers" data-np="योग्य शिक्षकहरू">Qualified Teachers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">XX%</div>
+                    <div class="stat-label" data-en="Exam Pass Rate" data-np="परीक्षा उत्तीर्ण दर">Exam Pass Rate</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── 5. Core Values ── -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title" style="text-align:center;"
+                data-en="Our Core Values" data-np="हाम्रा मूल मूल्यहरू">Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <i class="fa-solid fa-star"></i>
+                    <h4 data-en="Excellence" data-np="उत्कृष्टता">Excellence</h4>
+                    <p data-en="[Short description of commitment to academic excellence.]"
+                       data-np="[संक्षिप्त विवरण]">[Short description]</p>
+                </div>
+                <div class="value-card">
+                    <i class="fa-solid fa-handshake"></i>
+                    <h4 data-en="Integrity" data-np="इमानदारिता">Integrity</h4>
+                    <p data-en="[Short description of honesty and ethical conduct.]"
+                       data-np="[संक्षिप्त विवरण]">[Short description]</p>
+                </div>
+                <div class="value-card">
+                    <i class="fa-solid fa-users"></i>
+                    <h4 data-en="Community" data-np="समुदाय">Community</h4>
+                    <p data-en="[Short description of community involvement and belonging.]"
+                       data-np="[संक्षिप्त विवरण]">[Short description]</p>
+                </div>
+                <div class="value-card">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <h4 data-en="Innovation" data-np="नवीनता">Innovation</h4>
+                    <p data-en="[Short description of modern, ICT-based teaching approaches.]"
+                       data-np="[संक्षिप्त विवरण]">[Short description]</p>
+                </div>
+                <div class="value-card">
+                    <i class="fa-solid fa-seedling"></i>
+                    <h4 data-en="Growth" data-np="विकास">Growth</h4>
+                    <p data-en="[Short description of holistic student development.]"
+                       data-np="[संक्षिप्त विवरण]">[Short description]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── 6. Leadership Team ── -->
+    <section class="content-section alt-bg">
+        <div class="container">
+            <h2 class="section-title" style="text-align:center;"
+                data-en="Our Leadership Team" data-np="हाम्रो नेतृत्व टोली">Our Leadership Team</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar"><i class="fa-solid fa-user-tie"></i></div>
+                    <h4>[Principal Name]</h4>
+                    <div class="role" data-en="Principal" data-np="प्रधानाध्यापक">Principal</div>
+                    <p data-en="[Brief bio placeholder — qualifications and years of experience.]"
+                       data-np="[संक्षिप्त परिचय]">[Brief bio placeholder]</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar"><i class="fa-solid fa-user"></i></div>
+                    <h4>[Vice Principal Name]</h4>
+                    <div class="role" data-en="Vice Principal" data-np="उप-प्रधानाध्यापक">Vice Principal</div>
+                    <p data-en="[Brief bio placeholder.]" data-np="[संक्षिप्त परिचय]">[Brief bio placeholder]</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar"><i class="fa-solid fa-user"></i></div>
+                    <h4>[Head of Primary Name]</h4>
+                    <div class="role" data-en="Head of Primary" data-np="प्राथमिक प्रमुख">Head of Primary</div>
+                    <p data-en="[Brief bio placeholder.]" data-np="[संक्षिप्त परिचय]">[Brief bio placeholder]</p>
+                </div>
+                <div class="team-card">
+                    <div class="team-avatar"><i class="fa-solid fa-user"></i></div>
+                    <h4>[Admin Officer Name]</h4>
+                    <div class="role" data-en="Administrative Officer" data-np="प्रशासन अधिकृत">Administrative Officer</div>
+                    <p data-en="[Brief bio placeholder.]" data-np="[संक्षिप्त परिचय]">[Brief bio placeholder]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── 7. Accreditations & Recognition ── -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title" style="text-align:center;"
+                data-en="Accreditation &amp; Recognition"
+                data-np="मान्यता र पुरस्कारहरू">Accreditation &amp; Recognition</h2>
+            <div class="recognition-grid">
+                <div class="recognition-card">
+                    <i class="fa-solid fa-certificate"></i>
+                    <div>
+                        <h4>[Governing Body Name]</h4>
+                        <p data-en="[Description of affiliation — e.g., District Education Office, Bardiya.]"
+                           data-np="[विवरण]">[Description of affiliation]</p>
+                    </div>
+                </div>
+                <div class="recognition-card">
+                    <i class="fa-solid fa-award"></i>
+                    <div>
+                        <h4>[Award / Recognition Name]</h4>
+                        <p data-en="[Description of the award and year received.]"
+                           data-np="[विवरण]">[Description of the award and year received]</p>
+                    </div>
+                </div>
+                <div class="recognition-card">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <div>
+                        <h4>[Child-Friendly School Status]</h4>
+                        <p data-en="[Description of child-friendly or government recognition status.]"
+                           data-np="[विवरण]">[Description of recognition status]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── 8. CTA Band ── -->
+    <section class="cta-band">
+        <div class="container">
+            <h2 data-en="Ready to Join Our School Family?" data-np="हाम्रो विद्यालय परिवारमा सामेल हुन तयार हुनुहुन्छ?">
+                Ready to Join Our School Family?
+            </h2>
+            <p data-en="Admissions for the 2083 academic session are now open. We'd love to welcome your child."
+               data-np="शैक्षिक सत्र २०८३ को लागि भर्ना खुला छ। हामी तपाईंको बच्चालाई स्वागत गर्न उत्सुक छौं।">
+                Admissions for the 2083 academic session are now open. We'd love to welcome your child.
+            </p>
+            <a href="index.html#contact" class="btn btn-white"
+               data-en="Get In Touch" data-np="सम्पर्क गर्नुहोस्">Get In Touch</a>
+        </div>
+    </section>
+
+    <!-- ── Footer (identical to index.html) ── -->
+    <footer class="main-footer" id="contact">
+        <div class="container footer-grid">
+            <div class="footer-col contact-info">
+                <h3>Contact Us</h3>
+                <p><i class="fa-solid fa-location-dot"></i> Badhaiyatal-3, Semara, Bardiya</p>
+                <p><i class="fa-solid fa-phone"></i> <a href="tel:9858037940">9858037940</a></p>
+                <p><i class="fa-solid fa-envelope"></i> info@shreebhawani.edu.np</p>
+            </div>
+            <div class="footer-col quick-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Download Syllabus</a></li>
+                    <li><a href="#">Academic Calendar</a></li>
+                    <li><a href="#">Staff Directory</a></li>
+                </ul>
+            </div>
+            <div class="footer-col social-media">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/profile.php?id=61566379709845" target="_blank"
+                        rel="noopener noreferrer"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2083 Shree Bhawani Secondary School. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
