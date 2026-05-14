@@ -1,0 +1,34 @@
+{
+  "notices": [
+    {
+      "en": "Admissions open for 2083 academic session from ECED to Class 9.",
+      "np": "शैक्षिक सत्र २०८३ को लागि ईसीईडी (ECED) देखि कक्षा ९ सम्म भर्ना खुल्यो।"
+    },
+    {
+      "en": "First Terminal Examination starts from 15th Jestha.",
+      "np": "प्रथम त्रैमासिक परीक्षा जेठ १५ गतेदेखि सुरु हुनेछ।"
+    },
+    {
+      "en": "School will remain closed tomorrow due to public holiday.",
+      "np": "सार्वजनिक बिदाको कारण भोलि विद्यालय बन्द रहनेछ।"
+    }
+  ],
+  "gallery": [
+    {
+      "src": "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=400&q=80",
+      "alt": "Students in classroom"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=400&q=80",
+      "alt": "School building"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=400&q=80",
+      "alt": "Students learning"
+    },
+    {
+      "src": "https://images.unsplash.com/photo-1546410531-ea4ca67d476a?auto=format&fit=crop&w=400&q=80",
+      "alt": "School activities"
+    }
+  ]
+}

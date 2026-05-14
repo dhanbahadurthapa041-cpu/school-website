@@ -7,14 +7,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Language Toggle Logic
     const langToggle = document.getElementById('langToggle');
-    const translatableElements = document.querySelectorAll('[data-en][data-np]');
 
     if (langToggle) {
         langToggle.addEventListener('click', () => {
             currentLang = currentLang === 'en' ? 'np' : 'en';
             langToggle.textContent = currentLang === 'en' ? 'नेपाली' : 'English';
 
-            translatableElements.forEach(el => {
+            document.querySelectorAll('[data-en][data-np]').forEach(el => {
                 el.textContent = el.getAttribute(`data-${currentLang}`);
             });
         });
@@ -63,4 +62,36 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Fetch and render dynamic content (Phase 2)
+    const loadDynamicContent = async () => {
+        try {
+            const response = await fetch('/data.json');
+            if (!response.ok) throw new Error('Failed to load data.json');
+            const data = await response.json();
+
+            // Render Notices
+            const tickerContent = document.getElementById('tickerContent');
+            if (tickerContent && data.notices) {
+                tickerContent.innerHTML = data.notices.map(notice => `
+                    <span class="notice-item">
+                        <i class="fa-solid fa-bullhorn"></i>
+                        <span data-en="${notice.en}" data-np="${notice.np}">${notice[currentLang] || notice.en}</span>
+                    </span>
+                `).join('');
+            }
+
+            // Render Gallery
+            const galleryGrid = document.getElementById('galleryGrid');
+            if (galleryGrid && data.gallery) {
+                galleryGrid.innerHTML = data.gallery.map(img => `
+                    <img src="${img.src}" alt="${img.alt}" class="gallery-img" loading="lazy">
+                `).join('');
+            }
+        } catch (error) {
+            console.error('Error loading dynamic content:', error);
+        }
+    };
+
+    loadDynamicContent();
 });
