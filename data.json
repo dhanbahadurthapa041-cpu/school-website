@@ -15,19 +15,19 @@
   ],
   "gallery": [
     {
-      "src": "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=400&q=80",
+      "src": "assets/images/gallery-1.jpg",
       "alt": "Students in classroom"
     },
     {
-      "src": "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=400&q=80",
+      "src": "assets/images/gallery-2.jpg",
       "alt": "School building"
     },
     {
-      "src": "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=400&q=80",
+      "src": "assets/images/gallery-3.jpg",
       "alt": "Students learning"
     },
     {
-      "src": "https://images.unsplash.com/photo-1546410531-ea4ca67d476a?auto=format&fit=crop&w=400&q=80",
+      "src": "assets/images/gallery-4.jpg",
       "alt": "School activities"
     }
   ]

@@ -69,18 +69,7 @@
             <div class="notice-label" data-en="Latest Notices" data-np="पछिल्लो सूचना">Latest Notices</div>
             <div class="notice-ticker">
                 <div class="ticker-content" id="tickerContent">
-                    <span class="notice-item"><i class="fa-solid fa-bullhorn"></i> <span
-                            data-en="Admissions open for 2083 academic session from ECED to Class 9."
-                            data-np="शैक्षिक सत्र २०८३ को लागि ईसीईडी (ECED) देखि कक्षा ९ सम्म भर्ना खुल्यो।">Admissions
-                            open for 2083 academic session from ECED to Class 9.</span></span>
-                    <span class="notice-item"><i class="fa-solid fa-bullhorn"></i> <span
-                            data-en="First Terminal Examination starts from 15th Jestha."
-                            data-np="प्रथम त्रैमासिक परीक्षा जेठ १५ गतेदेखि सुरु हुनेछ।">First Terminal Examination
-                            starts from 15th Jestha.</span></span>
-                    <span class="notice-item"><i class="fa-solid fa-bullhorn"></i> <span
-                            data-en="School will remain closed tomorrow due to public holiday."
-                            data-np="सार्वजनिक बिदाको कारण भोलि विद्यालय बन्द रहनेछ।">School will remain closed tomorrow
-                            due to public holiday.</span></span>
+                    <!-- Dynamic notices will be loaded here -->
                 </div>
             </div>
         </div>
@@ -130,20 +119,13 @@
                 <div class="video-embed">
                     <iframe width="100%" height="400"
                         src="https://www.youtube.com/embed/ScMzIvxBSi4?si=rXp2O1pLhV-ZzJz3" title="Promotional Video"
-                        frameborder="0"
+                        frameborder="0" loading="lazy"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen style="border-radius:10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"></iframe>
                 </div>
                 <!-- Images Grid -->
-                <div class="images-grid">
-                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=400&q=80"
-                        alt="Students in classroom" class="gallery-img">
-                    <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?auto=format&fit=crop&w=400&q=80"
-                        alt="School building" class="gallery-img">
-                    <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=400&q=80"
-                        alt="Students learning" class="gallery-img">
-                    <img src="https://images.unsplash.com/photo-1546410531-ea4ca67d476a?auto=format&fit=crop&w=400&q=80"
-                        alt="School activities" class="gallery-img">
+                <div class="images-grid" id="galleryGrid">
+                    <!-- Dynamic gallery images will be loaded here -->
                 </div>
             </div>
         </div>
